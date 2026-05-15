@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seja Água — Transforme-se | WaterSER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-deep:   #020b18;
+      --blue-dark:   #040f1f;
+      --blue-mid:    #0a1e3a;
+      --blue-accent: #0d4fa8;
+      --blue-bright: #1a7aff;
+      --blue-glow:   #38a8ff;
+      --cyan:        #00d4ff;
+      --white:       #ffffff;
+      --white-80:    rgba(255,255,255,0.80);
+      --white-50:    rgba(255,255,255,0.50);
+      --white-20:    rgba(255,255,255,0.12);
+      --gold:        #c9a84c;
+      --rose:        #ff6eb4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--blue-deep);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .text-center { text-align: center; }
+    .text-cyan { color: var(--cyan); }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(2,11,24,0.96), transparent);
+      backdrop-filter: blur(4px);
+    }
+    .logo {
+      font-size: 1.1rem; font-weight: 700; letter-spacing: .12em;
+      color: var(--cyan); text-transform: uppercase;
+    }
+    .logo span { color: var(--white-50); }
+    .cta-nav {
+      background: var(--cyan); color: var(--blue-deep);
+      padding: 10px 22px; border-radius: 50px;
+      font-weight: 700; font-size: .85rem; letter-spacing: .05em;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      text-transform: uppercase;
+    }
+    .cta-nav:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,.4); }
+
+    /* ── URGENCY BAR ── */
+    .urgency-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      background: linear-gradient(135deg, #0a3060, #0d4fa8);
+      border-top: 1px solid rgba(0,212,255,.3);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .urgency-bar p { font-size: .88rem; font-weight: 600; color: var(--white); }
+    .urgency-bar strong { color: var(--cyan); }
+    .urgency-cta {
+      background: var(--cyan); color: var(--blue-deep);
+      padding: 9px 22px; border-radius: 50px;
+      font-weight: 900; font-size: .82rem; letter-spacing: .05em;
+      text-decoration: none; white-space: nowrap;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 100px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(13,79,168,.45) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 80%, rgba(0,212,255,.12) 0%, transparent 60%),
+        linear-gradient(180deg, #020b18 0%, #040f1f 100%);
+    }
+    .wave-line {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 120px; overflow: hidden;
+    }
+    .wave-line svg { width: 100%; height: 100%; }
+
+    .hero-eyebrow {
+      position: relative;
+      font-size: .75rem; font-weight: 600; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 20px;
+      padding: 8px 20px; border: 1px solid rgba(0,212,255,.3);
+      border-radius: 50px; display: inline-block;
+    }
+    .hero h1 {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700; line-height: 1.05; margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero h2 {
+      position: relative;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 400; color: var(--white-80); margin-bottom: 32px;
+    }
+    .hero-lead {
+      position: relative;
+      font-size: clamp(1rem, 2.2vw, 1.2rem); color: var(--white-80);
+      max-width: 620px; margin: 0 auto 48px; line-height: 1.8;
+    }
+    .hero-lead strong { color: var(--white); }
+
+    /* date badge */
+    .date-badge {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.35);
+      border-radius: 50px; padding: 10px 22px;
+      font-size: .88rem; font-weight: 600; color: var(--white);
+      margin-bottom: 32px;
+    }
+    .date-badge span { color: var(--cyan); font-weight: 700; }
+    .date-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan);
+                animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+
+    .cta-primary {
+      position: relative; display: inline-block;
+      background: linear-gradient(135deg, var(--cyan), #0090c8);
+      color: var(--blue-deep); padding: 18px 48px; border-radius: 60px;
+      font-size: 1.05rem; font-weight: 900; letter-spacing: .06em;
+      text-transform: uppercase; text-decoration: none;
+      box-shadow: 0 0 40px rgba(0,212,255,.35), 0 4px 20px rgba(0,0,0,.4);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .cta-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 60px rgba(0,212,255,.55), 0 8px 30px rgba(0,0,0,.5);
+    }
+    .hero-sub { position: relative; margin-top: 20px; font-size: .85rem; color: var(--white-50); }
+
+    /* ── SECTION BASE ── */
+    section { position: relative; z-index: 1; }
+    .section-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700;
+      line-height: 1.15; margin-bottom: 24px;
+    }
+    .section-lead { font-size: 1.05rem; color: var(--white-80); line-height: 1.85; max-width: 680px; }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,212,255,.3), transparent);
+    }
+
+    /* ── DOR ── */
+    .pain {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #040f1f 0%, #050c1a 100%);
+    }
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px; margin-top: 48px;
+    }
+    .pain-card {
+      background: var(--white-20); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px; padding: 28px 24px; backdrop-filter: blur(8px);
+      transition: border-color .3s, transform .3s;
+    }
+    .pain-card:hover { border-color: rgba(0,212,255,.3); transform: translateY(-4px); }
+    .pain-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .pain-card p { font-size: .95rem; color: var(--white-80); font-style: italic; line-height: 1.7; }
+
+    /* ── WATER TRUTH ── */
+    .truth {
+      padding: 100px 0;
+      background: radial-gradient(ellipse 100% 80% at 50% 50%, rgba(13,79,168,.25) 0%, transparent 70%),
+                  linear-gradient(180deg, #050c1a 0%, #040d1a 100%);
+    }
+    .truth-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700;
+      line-height: 1.25; text-align: center; max-width: 750px;
+      margin: 0 auto 60px;
+      background: linear-gradient(135deg, #fff 40%, var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .truth-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; border: 1px solid var(--white-20); border-radius: 20px;
+      overflow: hidden; margin-bottom: 60px;
+    }
+    .stat {
+      padding: 36px 24px; text-align: center;
+      background: rgba(13,79,168,.15); border-right: 1px solid var(--white-20);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900;
+      color: var(--cyan); line-height: 1; margin-bottom: 8px;
+    }
+    .stat-label { font-size: .85rem; color: var(--white-80); line-height: 1.5; }
+
+    /* beauty row */
+    .beauty-row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px; margin-top: 48px;
+    }
+    .beauty-card {
+      background: linear-gradient(135deg, rgba(13,79,168,.18), rgba(0,212,255,.07));
+      border: 1px solid rgba(0,212,255,.2); border-radius: 18px; padding: 28px 24px;
+      transition: border-color .3s, transform .3s;
+    }
+    .beauty-card:hover { border-color: rgba(0,212,255,.45); transform: translateY(-4px); }
+    .beauty-icon { font-size: 2rem; margin-bottom: 14px; }
+    .beauty-card h4 { font-size: 1rem; font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
+    .beauty-card p { font-size: .9rem; color: var(--white-80); line-height: 1.7; }
+
+    /* ── METHOD ── */
+    .method {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #040d1a 0%, #030c19 100%);
+    }
+    .method-intro { max-width: 640px; margin-bottom: 64px; }
+    .pillars { display: flex; flex-direction: column; gap: 24px; }
+    .pillar {
+      display: grid; grid-template-columns: 80px 1fr;
+      border: 1px solid var(--white-20); border-radius: 20px; overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .pillar:hover { border-color: var(--cyan); transform: translateX(6px); }
+    .pillar-num {
+      background: linear-gradient(135deg, var(--blue-accent), #052a60);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 900; color: var(--cyan);
+    }
+    .pillar-body { padding: 28px 32px; }
+    .pillar-title {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 6px;
+      letter-spacing: .04em; text-transform: uppercase; color: var(--cyan);
+    }
+    .pillar-sub { font-size: .9rem; color: var(--white-50); margin-bottom: 12px; font-style: italic; }
+    .pillar-body p { font-size: .95rem; color: var(--white-80); line-height: 1.75; }
+
+    /* ── TRANSFORMATION ── */
+    .transformation {
+      padding: 100px 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,212,255,.08) 0%, transparent 65%),
+                  linear-gradient(180deg, #030c19 0%, #050e1c 100%);
+      text-align: center;
+    }
+    .transform-grid {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 16px; align-items: center; margin-top: 56px;
+    }
+    .transform-col { display: flex; flex-direction: column; gap: 14px; }
+    .transform-item {
+      background: var(--white-20); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px; padding: 18px 20px;
+      font-size: .95rem; color: var(--white-80); line-height: 1.5;
+    }
+    .from-item { border-left: 3px solid rgba(255,80,80,.4); }
+    .to-item { border-left: 3px solid rgba(0,212,255,.5); color: var(--white); }
+    .transform-arrow {
+      font-size: 2.5rem; color: var(--cyan);
+      display: flex; flex-direction: column; gap: 14px; align-items: center;
+    }
+    .col-label { font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 8px; color: var(--white-50); }
+
+    /* ── WORKSHOP ── */
+    .workshop {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #050e1c 0%, #040c18 100%);
+    }
+    .workshop-card {
+      background: linear-gradient(135deg, rgba(13,79,168,.2), rgba(0,212,255,.08));
+      border: 1px solid rgba(0,212,255,.25); border-radius: 24px;
+      padding: 56px 48px; position: relative; overflow: hidden;
+    }
+    .workshop-card::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(0,212,255,.15), transparent 70%);
+      border-radius: 50%;
+    }
+    .workshop-tag {
+      display: inline-block;
+      background: rgba(0,212,255,.15); border: 1px solid rgba(0,212,255,.3);
+      color: var(--cyan); padding: 6px 16px; border-radius: 50px;
+      font-size: .75rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .workshop-date-info {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      padding: 8px 18px; border-radius: 50px;
+      font-size: .85rem; font-weight: 600; color: var(--white-80);
+    }
+    .workshop-date-info span { color: var(--white); font-weight: 700; }
+    .workshop-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700;
+      line-height: 1.1; margin-bottom: 12px;
+    }
+    .workshop-subtitle { font-size: 1.1rem; color: var(--white-80); margin-bottom: 40px; }
+    .modules { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+    .module {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px 20px; background: rgba(255,255,255,.04);
+      border-radius: 12px; border: 1px solid var(--white-20);
+    }
+    .module-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      background: var(--blue-accent); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 700; color: var(--cyan);
+    }
+    .module-text strong { font-size: .95rem; display: block; margin-bottom: 4px; }
+    .module-text span { font-size: .85rem; color: var(--white-50); }
+    .workshop-includes {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px; margin-bottom: 40px;
+    }
+    .include-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .9rem; color: var(--white-80);
+    }
+    .include-item::before { content: '✦'; color: var(--cyan); font-size: .7rem; flex-shrink: 0; }
+
+    /* ── PRICING ── */
+    .pricing {
+      padding: 80px 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(13,79,168,.2) 0%, transparent 70%),
+                  linear-gradient(180deg, #040c18 0%, #030b17 100%);
+      text-align: center;
+    }
+    .price-card {
+      max-width: 500px; margin: 48px auto 0;
+      background: linear-gradient(135deg, rgba(13,79,168,.25), rgba(0,212,255,.1));
+      border: 1px solid rgba(0,212,255,.35); border-radius: 28px;
+      padding: 48px 40px; position: relative;
+    }
+    .price-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--cyan); color: var(--blue-deep);
+      padding: 6px 24px; border-radius: 50px;
+      font-size: .75rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .price-from { font-size: .85rem; color: var(--white-50); margin-bottom: 4px; }
+    .price-old { font-size: 1.1rem; color: rgba(255,80,80,.7); text-decoration: line-through; margin-bottom: 8px; }
+    .price-main {
+      font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; line-height: 1;
+      color: var(--cyan); margin-bottom: 6px;
+    }
+    .price-main sup { font-size: .35em; vertical-align: top; margin-top: .2em; }
+    .price-installment { font-size: .9rem; color: var(--white-50); margin-bottom: 32px; }
+    .price-cta {
+      display: block;
+      background: linear-gradient(135deg, var(--cyan), #0090c8);
+      color: var(--blue-deep); padding: 20px 32px; border-radius: 60px;
+      font-size: 1.05rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 0 40px rgba(0,212,255,.35);
+      transition: transform .25s, box-shadow .25s; margin-bottom: 20px;
+    }
+    .price-cta:hover { transform: translateY(-3px); box-shadow: 0 0 60px rgba(0,212,255,.55); }
+    .price-guarantee { font-size: .82rem; color: var(--white-50); line-height: 1.6; }
+    .price-guarantee strong { color: var(--white-80); }
+
+    /* ── DENIS ── */
+    .about {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #030b17 0%, #040d1a 100%);
+    }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .about-photo {
+      border-radius: 24px; overflow: hidden;
+      border: 2px solid rgba(0,212,255,.25);
+      box-shadow: 0 0 60px rgba(0,212,255,.15), 0 20px 60px rgba(0,0,0,.5);
+      aspect-ratio: 3/4; position: relative;
+    }
+    .about-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      display: block;
+    }
+    .about-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(2,11,24,.6) 0%, transparent 50%);
+    }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+    .tag {
+      padding: 6px 14px; border-radius: 50px;
+      border: 1px solid rgba(0,212,255,.3);
+      font-size: .75rem; font-weight: 600; letter-spacing: .08em;
+      color: var(--cyan); text-transform: uppercase;
+    }
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 700; margin-bottom: 4px; line-height: 1.2;
+    }
+    .about-text .age-note {
+      font-size: .8rem; color: var(--cyan); letter-spacing: .05em;
+      margin-bottom: 6px; font-style: italic;
+    }
+    .about-text .role { color: var(--white-50); font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 24px; }
+    .about-text p { font-size: .95rem; color: var(--white-80); line-height: 1.85; margin-bottom: 16px; }
+
+    /* ── FAQ ── */
+    .faq {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #040d1a 0%, #030b17 100%);
+    }
+    .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--white-20); border-radius: 14px; overflow: hidden; }
+    .faq-q {
+      padding: 20px 24px; font-weight: 600; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: color .2s;
+    }
+    .faq-q:hover { color: var(--cyan); }
+    .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--cyan); }
+    .faq-a { padding: 0 24px 20px; font-size: .92rem; color: var(--white-80); line-height: 1.8; display: none; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-q::after { content: '−'; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 120px 0; text-align: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(13,79,168,.4) 0%, transparent 70%),
+        linear-gradient(180deg, #030b17 0%, #020b18 100%);
+    }
+    .final-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 700;
+      line-height: 1.1; margin-bottom: 20px;
+    }
+    .final-cta p { font-size: 1.1rem; color: var(--white-80); max-width: 580px; margin: 0 auto 48px; line-height: 1.8; }
+
+    footer {
+      padding: 40px 24px; text-align: center;
+      border-top: 1px solid var(--white-20);
+      font-size: .8rem; color: var(--white-50);
+      margin-bottom: 60px;
+    }
+    footer a { color: var(--cyan); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .truth-stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--white-20); }
+      .stat:last-child { border-bottom: none; }
+      .transform-grid { grid-template-columns: 1fr; }
+      .transform-arrow { flex-direction: row; justify-content: center; font-size: 1.5rem; }
+      .about-inner { grid-template-columns: 1fr; }
+      .workshop-card { padding: 36px 24px; }
+      .pillar { grid-template-columns: 60px 1fr; }
+      .urgency-bar { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Water<span>.</span>SER</div>
+    <a href="https://pay.kiwify.com.br/ePHZLmX" class="cta-nav" target="_blank">Quero me Transformar</a>
+  </header>
+
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar">
+    <p>🔴 Workshop Online · <strong>30 de Maio · Sábado · 8h00</strong> · Vagas limitadas</p>
+    <a href="https://pay.kiwify.com.br/ePHZLmX" class="urgency-cta" target="_blank">Garantir Minha Vaga</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-eyebrow">Workshop Online de Transformação Humana</div>
+      <h1>WaterSER</h1>
+      <h2>Seja a Água, transforme-se.</h2>
+      <p class="hero-lead">
+        Você pode mudar o método, a informação, a mentalidade —<br/>
+        mas se não mudar a <strong>BASE da sua Essência</strong>, nada muda de verdade.<br/>
+        A água é a BASE do seu ser. E ela pode ser renovada.
+      </p>
+      <div class="date-badge">
+        <span class="date-dot"></span>
+        <span>30 de Maio</span> · Sábado · 8h00 · <span>Online ao Vivo</span>
+      </div>
+      <br/>
+      <a href="https://pay.kiwify.com.br/ePHZLmX" class="cta-primary" target="_blank">Quero Ser Água Agora</a>
+      <p class="hero-sub">Vagas limitadas · Workshop online · Acesso imediato após inscrição</p>
+    </div>
+    <div class="wave-line">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" fill="#040f1f" opacity="0.8"/>
+        <path d="M0,80 C240,20 480,100 720,60 C960,20 1200,80 1440,40 L1440,120 L0,120 Z" fill="#040f1f" opacity="0.5"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══ DOR ══ -->
+  <section class="pain">
+    <div class="container">
+      <p class="section-label">Você Reconhece Isso?</p>
+      <h2 class="section-title">Você já tentou de tudo.<br/>E ainda assim algo está errado.</h2>
+      <p class="section-lead">Cursos, terapia, meditação, dieta... Você tenta mudar, mas sente que algo fundamental não se move. Como se houvesse um teto invisível — dentro de você.</p>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">🔩</div>
+          <p>"Não aguento mais essa vida. Preciso de uma saída."</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🧱</div>
+          <p>"Minha vida travou. Faço tudo certo, mas não sai do lugar."</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🌀</div>
+          <p>"Estou exausto. Sem energia. Sem foco. Sem paz."</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">💭</div>
+          <p>"Mesmo tendo tudo, parece que minha vida não está boa."</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">⚡</div>
+          <p>"Sinto que algo está errado — dentro de mim, na raiz."</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🪞</div>
+          <p>"Olho no espelho e não reconheço minha vitalidade de antes."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ VERDADE DA ÁGUA ══ -->
+  <section class="truth">
+    <div class="container">
+      <p class="text-center section-label">A Descoberta que Muda Tudo</p>
+      <p class="truth-quote">"Muitos mudam o método, a informação — mas não mudam a BASE. A BASE da sua Essência é a água que você carrega dentro de você."</p>
+      <div class="truth-stats">
+        <div class="stat">
+          <div class="stat-num">75%</div>
+          <div class="stat-label">do seu corpo<br/>é feito de água</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">85%</div>
+          <div class="stat-label">do seu cérebro<br/>é água e plasma</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">7 anos</div>
+          <div class="stat-label">para renovação<br/>celular completa</div>
+        </div>
+      </div>
+
+      <div style="max-width:680px;margin:0 auto 56px;text-align:center;">
+        <p style="font-size:1.05rem;color:var(--white-80);line-height:1.85;">
+          A Água do Mar é o plasma primordial da vida. Os mesmos minerais que formaram a vida nos oceanos há bilhões de anos são os mesmos que compõem seu sangue, sua linfa e seus tecidos. Beber Água Oceânica purificada não é apenas hidratação — é <strong>regeneração celular profunda, rejuvenescimento e renovação da sua Essência.</strong>
+        </p>
+      </div>
+
+      <!-- Beauty / Regeneration Cards -->
+      <div class="beauty-row">
+        <div class="beauty-card">
+          <div class="beauty-icon">🧬</div>
+          <h4>Regeneração Celular</h4>
+          <p>A água oceânica carrega 78 minerais e oligoelementos que alimentam diretamente suas células, acelerando o processo de renovação que normalmente leva 7 anos.</p>
+        </div>
+        <div class="beauty-card">
+          <div class="beauty-icon">✨</div>
+          <h4>Rejuvenescimento Real</h4>
+          <p>Células renovadas se traduzem em pele mais viva, cabelos mais fortes e uma vitalidade que aparece no olhar. Beleza real vem de dentro — vem da água que você é.</p>
+        </div>
+        <div class="beauty-card">
+          <div class="beauty-icon">💎</div>
+          <h4>Beleza de BASE</h4>
+          <p>Cosméticos tratam a superfície. A Água Oceânica trata a raiz. Quando a BASE celular é renovada, o reflexo externo muda de forma natural e duradoura.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ MÉTODO ══ -->
+  <section class="method">
+    <div class="container">
+      <div class="method-intro">
+        <p class="section-label">O Método</p>
+        <h2 class="section-title">Três pilares para mudar o que nenhum método muda.</h2>
+        <p class="section-lead">Não é mais uma técnica mental. É uma reprogramação completa da sua BASE física, energética e informacional.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-body">
+            <p class="pillar-title">Água Oceânica Viva</p>
+            <p class="pillar-sub">Nova BASE · Regeneração · Rejuvenescimento · Beleza Real</p>
+            <p>Água oceânica purificada — não filtrada — carrega os 78 minerais do plasma da vida. Beber uma nova água é renovar a BASE estrutural da sua Essência. Seu cérebro, feito de água, começa a operar em uma nova frequência. Células se regeneram. O envelhecimento desacelera. A beleza emerge da raiz. O que antes levava 7 anos começa a acontecer agora.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-body">
+            <p class="pillar-title">Respiração Energética</p>
+            <p class="pillar-sub">Acesso à Fonte · Energia Limpa · Presença Total</p>
+            <p>A maioria das pessoas nunca aprendeu a respirar de verdade. A Respiração Energética é uma tecnologia de acesso direto à fonte de energia da vida. Muda o estado em minutos. Reconecta você com o que é real. Limpa padrões que palavras não conseguem limpar. É biohacking em sua forma mais pura — sem suplemento, sem custo, sem limite.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-body">
+            <p class="pillar-title">Jejum Regenerativo</p>
+            <p class="pillar-sub">Autofagia · Substituição da BASE · Aceleração Total</p>
+            <p>O jejum não é privação — é a tecnologia mais antiga da humanidade para renovação profunda. Quando o corpo para de digerir, ativa a autofagia: o processo de substituição da BASE celular antiga por nova. Combinado com a água oceânica, a regeneração se torna exponencial. É biohacking de alto nível — acessível a qualquer pessoa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ TRANSFORMAÇÃO ══ -->
+  <section class="transformation">
+    <div class="container">
+      <p class="section-label">A Jornada</p>
+      <h2 class="section-title">De onde você está<br/>para onde você vai.</h2>
+      <div class="transform-grid">
+        <div class="transform-col">
+          <p class="col-label">Antes</p>
+          <div class="transform-item from-item">Exaustão crônica e burnout</div>
+          <div class="transform-item from-item">Ansiedade e mente acelerada</div>
+          <div class="transform-item from-item">Falta de foco e clareza</div>
+          <div class="transform-item from-item">Corpo pesado, inflamado</div>
+          <div class="transform-item from-item">Pele sem vida, envelhecimento</div>
+          <div class="transform-item from-item">BASE antiga, esgotada</div>
+        </div>
+        <div class="transform-arrow">
+          <span>→</span><span>→</span><span>→</span><span>→</span><span>→</span><span>→</span>
+        </div>
+        <div class="transform-col">
+          <p class="col-label">Depois</p>
+          <div class="transform-item to-item">Energia limpa e renovada</div>
+          <div class="transform-item to-item">Paz interior e presença</div>
+          <div class="transform-item to-item">Foco e visão ampliados</div>
+          <div class="transform-item to-item">Corpo leve, regenerado</div>
+          <div class="transform-item to-item">Pele viva, rejuvenescida</div>
+          <div class="transform-item to-item">BASE renovada, vitalidade total</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ WORKSHOP ══ -->
+  <section class="workshop" id="workshop">
+    <div class="container">
+      <div class="workshop-card">
+        <div>
+          <span class="workshop-tag">Workshop Online ao Vivo</span>
+        </div>
+        <div class="workshop-date-info">
+          📅 <span>30 de Maio de 2026</span> · Sábado · <span>8h00</span> · 100% Online
+        </div>
+        <h2 class="workshop-title">Seja Água,<br/>Transforme-se.</h2>
+        <p class="workshop-subtitle">Uma imersão de transformação real. Não palestras. Não teoria. Experiência.</p>
+        <div class="modules">
+          <div class="module">
+            <div class="module-num">M1</div>
+            <div class="module-text">
+              <strong>O Ser de Água — Quem Você Realmente É</strong>
+              <span>A ciência da água no corpo e no cérebro. Por que a BASE que você bebe molda quem você é.</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-num">M2</div>
+            <div class="module-text">
+              <strong>Água Oceânica — Regeneração, Rejuvenescimento e Beleza</strong>
+              <span>A ciência da água do mar como plasma da vida. Protocolo de iniciação à nova BASE celular.</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-num">M3</div>
+            <div class="module-text">
+              <strong>Respiração Energética — Acesse a Fonte</strong>
+              <span>Sessão imersiva de biohacking respiratório. Limpeza profunda. Reconexão com sua Essência.</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-num">M4</div>
+            <div class="module-text">
+              <strong>Jejum + Água — A Aceleração da Renovação da BASE</strong>
+              <span>Protocolo prático de jejum e hidratação oceânica para os 30 dias seguintes.</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-num">M5</div>
+            <div class="module-text">
+              <strong>Programação — Palavras que Mudam a Água</strong>
+              <span>Baseado em Emoto e neurociência: como suas intenções e palavras reprogramam a água do seu ser.</span>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-num">M6</div>
+            <div class="module-text">
+              <strong>Sai Daí e Recomeça — Seu Novo Plano de Vida</strong>
+              <span>Nova direção. Nova BASE. Seus próximos 90 dias de transformação e rejuvenescimento.</span>
+            </div>
+          </div>
+        </div>
+        <div class="workshop-includes">
+          <div class="include-item">Workshop online ao vivo</div>
+          <div class="include-item">Material completo do método</div>
+          <div class="include-item">Protocolo de 30 dias</div>
+          <div class="include-item">Acesso à comunidade</div>
+          <div class="include-item">Gravação disponível</div>
+          <div class="include-item">Suporte pós-workshop</div>
+        </div>
+        <div style="text-align:center;">
+          <a href="https://pay.kiwify.com.br/ePHZLmX" class="cta-primary" target="_blank" style="display:inline-block;">
+            Quero Minha Vaga — 30 de Maio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PREÇO ══ -->
+  <section class="pricing" id="inscricao">
+    <div class="container">
+      <p class="section-label">Invista na Sua Essência</p>
+      <h2 class="section-title">Renove a BASE.<br/>Transforme Tudo.</h2>
+      <p style="color:var(--white-80);max-width:500px;margin:0 auto;">Uma única decisão pode mudar os próximos 7 anos da sua vida — começando pela sua água.</p>
+      <div class="price-card">
+        <div class="price-badge">Lote de Lançamento · 30/05</div>
+        <p class="price-from">Investimento único</p>
+        <p class="price-old">R$ 997,00</p>
+        <p class="price-main"><sup>R$</sup>497</p>
+        <p class="price-installment">ou 12x de R$ 47,90 no cartão</p>
+        <a href="https://pay.kiwify.com.br/ePHZLmX" class="price-cta" target="_blank">
+          Quero Ser Água — Garantir Minha Vaga
+        </a>
+        <p class="price-guarantee">
+          <strong>Garantia de 7 dias.</strong> Se em uma semana você não sentir nada diferente, devolvemos 100% do seu investimento — sem perguntas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ SOBRE DENIS ══ -->
+  <section class="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-photo">
+          <img src="./denis.jpg" alt="Denis WSER" />
+          <div class="about-photo-overlay"></div>
+        </div>
+        <div class="about-text">
+          <h3>Denis WSER</h3>
+          <p class="age-note">43 anos — a vitalidade de quem pratica o que ensina.</p>
+          <p class="role">Neurocientista · Biohacker · Visionário</p>
+          <div class="about-tags">
+            <span class="tag">Neurociência</span>
+            <span class="tag">Biohacking</span>
+            <span class="tag">Respiração</span>
+            <span class="tag">Água Oceânica</span>
+            <span class="tag">Longevidade</span>
+          </div>
+          <p>Denis passou anos investigando por que a maioria das transformações não dura. A resposta que encontrou foi radical: as pessoas mudam o software — pensamentos, crenças, hábitos — mas não mudam a <strong>BASE</strong>.</p>
+          <p>Combinando neurociência aplicada, biohacking de ponta e sabedoria ancestral, Denis desenvolveu o Método WaterSER — a única abordagem que começa pela BASE da sua Essência para transformar tudo o que você pode ser.</p>
+          <p><em style="color:var(--cyan);">"Programe sua mente, e seu corpo vai te levar."</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ FAQ ══ -->
+  <section class="faq">
+    <div class="container">
+      <p class="section-label">Dúvidas Frequentes</p>
+      <h2 class="section-title">Perguntas que<br/>você pode ter.</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">O que é exatamente a água oceânica purificada?</div>
+          <div class="faq-a">É água do oceano que passa por purificação para eliminar contaminantes, mas mantém intacta sua composição mineral — 78 minerais e oligoelementos que a água comum não possui. É o mesmo plasma que cobre 70% do planeta e compõe a BASE do seu corpo. Rica em magnésio, silício, selênio e dezenas de minerais essenciais ao rejuvenescimento celular.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Como a água do mar ajuda na beleza e no rejuvenescimento?</div>
+          <div class="faq-a">A regeneração celular real começa na BASE — nas células. Os minerais da água oceânica alimentam diretamente os processos de renovação celular, redução de inflamação sistêmica e produção de colágeno. Quando a célula recebe o que precisa, o reflexo aparece na pele, no cabelo, na vitalidade e no olhar. É beleza biohacked — de dentro para fora.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Nunca fiz jejum antes. Posso participar?</div>
+          <div class="faq-a">Sim. O protocolo de jejum apresentado no workshop é gradual e adaptável. Você vai entender a filosofia e a prática, e poderá aplicar no ritmo que faz sentido para sua realidade — sem radicalismos, sem riscos.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">A Respiração Energética é segura? Tenho ansiedade.</div>
+          <div class="faq-a">Totalmente segura quando conduzida por um facilitador experiente. Denis conduz as sessões com atenção individual. Pessoas com ansiedade frequentemente relatam alívio significativo já na primeira sessão — é uma das aplicações mais poderosas do método para ansiedade e estresse.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Em quanto tempo vejo resultados?</div>
+          <div class="faq-a">Muitos participantes relatam mudanças perceptíveis já durante o workshop — mais energia, clareza mental, sensação de leveza. A renovação celular profunda é contínua e se intensifica nas semanas seguintes. O protocolo de 30 dias que você recebe consolida e acelera a transformação.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINAL CTA ══ -->
+  <section class="final-cta">
+    <div class="container">
+      <p class="section-label text-center">Sua Hora É Agora</p>
+      <h2>Sai Daí e<br/>Recomeça Hoje.</h2>
+      <p>A água que está em você carrega a história de tudo que você já viveu. Você pode renovar essa história. Começando pela BASE — começando pela sua água.</p>
+      <a href="https://pay.kiwify.com.br/ePHZLmX" class="cta-primary" target="_blank">
+        Quero Ser Água — Garantir Minha Vaga
+      </a>
+      <p style="margin-top:20px;font-size:.85rem;color:var(--white-50);">Workshop Online · 30 de Maio · Sábado · 8h00 · Vagas Limitadas</p>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin-bottom:8px;font-size:1rem;font-weight:700;color:var(--cyan);">WaterSER</p>
+    <p>Treinamentos de Transformação Humana · <a href="https://instagram.com/water.ser" target="_blank">@water.ser</a></p>
+    <p style="margin-top:12px;">© 2026 WaterSER · Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      el.closest('.faq-item').classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
