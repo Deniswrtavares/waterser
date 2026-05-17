@@ -246,6 +246,36 @@
     .beauty-card h4 { font-size: 1rem; font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
     .beauty-card p { font-size: .9rem; color: var(--white-80); line-height: 1.7; }
 
+    /* ── MINERAIS ── */
+    .minerals-section { padding:90px 0; background:linear-gradient(180deg,#020810 0%,#030a16 100%); border-top:1px solid rgba(0,212,255,.08); }
+    .mineral-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:64px; }
+    .mineral-card {
+      background:rgba(255,255,255,.04); border:1px solid rgba(0,212,255,.15);
+      border-radius:18px; padding:22px 18px;
+      transition:border-color .3s,transform .3s;
+    }
+    .mineral-card:hover { border-color:rgba(0,212,255,.4); transform:translateY(-4px); }
+    .mineral-symbol {
+      font-size:1.8rem; font-weight:900; color:var(--cyan);
+      font-family:'Playfair Display',serif; line-height:1; margin-bottom:6px;
+    }
+    .mineral-name { font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#fff; margin-bottom:8px; }
+    .mineral-benefit { font-size:.82rem; color:var(--white-50); line-height:1.6; }
+    .compare-wrap { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:720px; margin:0 auto; }
+    .compare-col { border-radius:20px; padding:28px 24px; }
+    .compare-col.bad { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); }
+    .compare-col.good { background:rgba(0,212,255,.07); border:1px solid rgba(0,212,255,.35); }
+    .compare-col h4 { font-size:1rem; font-weight:700; color:#fff; margin-bottom:20px; }
+    .compare-col.good h4 { color:var(--cyan); }
+    .compare-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .compare-col li { font-size:.88rem; color:var(--white-80); display:flex; align-items:flex-start; gap:8px; line-height:1.5; }
+    .compare-col.bad li::before { content:'✗'; color:rgba(255,80,80,.7); font-weight:700; flex-shrink:0; }
+    .compare-col.good li::before { content:'✓'; color:var(--cyan); font-weight:700; flex-shrink:0; }
+    @media(max-width:600px) {
+      .compare-wrap { grid-template-columns:1fr; }
+      .mineral-grid { grid-template-columns:1fr 1fr; }
+    }
+
     /* ── METHOD ── */
     .method {
       padding: 100px 0;
@@ -697,6 +727,107 @@
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ MINERAIS DO OCEANO ══ -->
+  <section class="minerals-section">
+    <div class="container">
+      <p class="section-label">A Composição da Vida</p>
+      <h2 class="section-title">O que está dentro<br/>de cada gota.</h2>
+      <p style="text-align:center;color:var(--white-80);font-size:1rem;max-width:660px;margin:0 auto 56px;line-height:1.85;">
+        A água do oceano não é "água salgada". É um laboratório vivo com <strong style="color:#fff;">78 minerais e oligoelementos biocompatíveis</strong> — a mesma solução que compõe seu sangue, sua linfa e cada célula do seu corpo.
+      </p>
+
+      <div class="mineral-grid">
+        <div class="mineral-card">
+          <div class="mineral-symbol">Mg</div>
+          <div class="mineral-name">Magnésio</div>
+          <div class="mineral-benefit">Energia celular, relaxamento muscular, qualidade do sono e redução do cortisol</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Si</div>
+          <div class="mineral-name">Silício</div>
+          <div class="mineral-benefit">Formação de colágeno, pele firme, cabelos fortes e unhas saudáveis</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">K</div>
+          <div class="mineral-name">Potássio</div>
+          <div class="mineral-benefit">Equilíbrio hídrico, pressão arterial e função neuromuscular</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Ca</div>
+          <div class="mineral-name">Cálcio</div>
+          <div class="mineral-benefit">Ossos, músculos e coração — na forma bioabsorvível que o corpo reconhece</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Zn</div>
+          <div class="mineral-name">Zinco</div>
+          <div class="mineral-benefit">Imunidade, cicatrização, produção hormonal e saúde da pele</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Se</div>
+          <div class="mineral-name">Selênio</div>
+          <div class="mineral-benefit">Potente antioxidante, proteção celular e equilíbrio da tireoide</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">I</div>
+          <div class="mineral-name">Iodo</div>
+          <div class="mineral-benefit">Função da tireoide, metabolismo e regulação hormonal natural</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Cu</div>
+          <div class="mineral-name">Cobre</div>
+          <div class="mineral-benefit">Síntese de colágeno, energia mitocondrial e proteção antioxidante</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Na</div>
+          <div class="mineral-name">Sódio</div>
+          <div class="mineral-benefit">Hidratação intracelular, transmissão nervosa e equilíbrio eletrolítico</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Fe</div>
+          <div class="mineral-name">Ferro</div>
+          <div class="mineral-benefit">Oxigenação do sangue, disposição física e combate à fadiga crônica</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">Mn</div>
+          <div class="mineral-name">Manganês</div>
+          <div class="mineral-benefit">Antioxidante enzimático, metabolismo ósseo e equilíbrio do açúcar no sangue</div>
+        </div>
+        <div class="mineral-card">
+          <div class="mineral-symbol">+66</div>
+          <div class="mineral-name">Outros</div>
+          <div class="mineral-benefit">Boro, Cromo, Cobalto, Molibdênio e mais 62 oligoelementos essenciais à vida</div>
+        </div>
+      </div>
+
+      <!-- Comparativo -->
+      <p class="section-label" style="margin-bottom:24px;">Por que isso importa</p>
+      <div class="compare-wrap">
+        <div class="compare-col bad">
+          <h4>💧 Água Comum / Mineral</h4>
+          <ul>
+            <li>2 a 5 minerais isolados</li>
+            <li>Baixa biodisponibilidade</li>
+            <li>pH variável, sem tampão natural</li>
+            <li>Sem oligoelementos reativos</li>
+            <li>Hidratação apenas superficial</li>
+          </ul>
+        </div>
+        <div class="compare-col good">
+          <h4>🌊 Água Oceânica Purificada</h4>
+          <ul>
+            <li>78 minerais e oligoelementos</li>
+            <li>Biocompatível com o plasma humano</li>
+            <li>pH alcalino naturalmente tamponado</li>
+            <li>Mg, Si, Se, I, Cu, Zn e dezenas mais</li>
+            <li>Hidratação intra e extracelular profunda</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
