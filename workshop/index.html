@@ -464,6 +464,7 @@
     .photo-strip-item img {
       width: 100%; height: 100%; object-fit: cover; object-position: center top;
       display: block; transition: transform .4s;
+      image-orientation: from-image;
     }
     .photo-strip-item:hover img { transform: scale(1.06); }
     .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
@@ -1023,13 +1024,13 @@
           </div>
           <div class="photo-strip">
             <div class="photo-strip-item">
-              <img src="./fotos/denis2.jpg" alt="Denis no mar" style="transform:rotate(180deg)" />
+              <img src="./fotos/denis2.jpg" alt="Denis no mar" />
             </div>
             <div class="photo-strip-item">
-              <img src="./fotos/denis3.jpg" alt="Denis na pedra" style="transform:rotate(180deg)" />
+              <img src="./fotos/denis3.jpg" alt="Denis na pedra" />
             </div>
             <div class="photo-strip-item">
-              <img src="./fotos/denis4.jpg" alt="Denis na praia" style="transform:rotate(90deg);object-position:center center" />
+              <img src="./fotos/denis4.jpg" alt="Denis na praia" />
             </div>
           </div>
         </div>
