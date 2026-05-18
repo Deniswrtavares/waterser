@@ -101,7 +101,7 @@
     }
     .hero-bg::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(2,11,24,.80) 0%, rgba(4,15,31,.70) 50%, rgba(2,11,24,.92) 100%);
+      background: linear-gradient(180deg, rgba(2,11,24,.55) 0%, rgba(4,15,31,.45) 40%, rgba(2,11,24,.88) 100%);
     }
     .wave-line {
       position: absolute; bottom: 0; left: 0; right: 0; height: 120px; overflow: hidden;
@@ -116,19 +116,39 @@
       padding: 8px 20px; border: 1px solid rgba(0,212,255,.3);
       border-radius: 50px; display: inline-block;
     }
+    .hero-workshop-label {
+      position: relative;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(.95rem, 1.8vw, 1.25rem); font-weight: 400;
+      color: rgba(255,255,255,.65); letter-spacing: .06em;
+      margin-bottom: 10px; display: block;
+    }
     .hero h1 {
       position: relative;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 700; line-height: 1.05; margin-bottom: 12px;
-      background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-size: clamp(4rem, 11vw, 8.5rem);
+      font-weight: 700; line-height: 1; margin-bottom: 16px;
+      letter-spacing: -.02em;
+      -webkit-text-fill-color: unset;
+    }
+    .hero h1 .water-part {
+      color: #b8a4f2;
+    }
+    .hero h1 .ser-part {
+      color: #f2e6d4;
     }
     .hero h2 {
       position: relative;
       font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-size: clamp(1.15rem, 2.8vw, 1.9rem);
       font-weight: 400; color: var(--white-80); margin-bottom: 32px;
+      letter-spacing: .01em;
+    }
+    .hero h2 .oceano-part {
+      font-style: italic; color: rgba(255,255,255,.9);
+    }
+    .hero h2 .para-voce-part {
+      font-weight: 700; font-style: italic; color: #f2e6d4;
     }
     .hero-lead {
       position: relative;
@@ -565,8 +585,8 @@
     <div class="hero-bg"></div>
     <div class="container">
       <div class="hero-eyebrow">Workshop Online de Transformação Humana</div>
-      <h1>WaterSER</h1>
-      <h2>Oceano vai transformar você.</h2>
+      <h1><span class="water-part">Water</span><span class="ser-part">SER</span></h1>
+      <h2><span class="oceano-part">A ciência do Oceano</span>&nbsp;&nbsp;<span class="para-voce-part">para você.</span></h2>
       <p class="hero-lead">
         Beber <strong>Água Oceânica purificada</strong> não é apenas hidratação — é regeneração celular profunda e renovação da sua Essência.<br/><br/>
         A água do oceano não é só "água salgada". É água viva com <strong>78 minerais e oligoelementos biocompatíveis</strong> — a mesma solução que compõe cada célula do seu corpo.
@@ -628,7 +648,7 @@
   <section class="truth">
     <div class="container">
       <p class="text-center section-label">A Descoberta que Muda Tudo</p>
-      <p class="truth-quote">"Muitos mudam o método, a informação. Mas não mudam a BASE da sua Essência, e a água que você carrega dentro de você."</p>
+      <p class="truth-quote">"Muitos mudam a informação, a forma de fazer. Mas não mudam a Essência, a água que você carrega dentro de você."</p>
       <div class="truth-stats">
         <div class="stat">
           <div class="stat-num">75%</div>
@@ -637,10 +657,6 @@
         <div class="stat">
           <div class="stat-num">85%</div>
           <div class="stat-label">do seu cérebro<br/>é água e plasma</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">7 anos</div>
-          <div class="stat-label">para renovação<br/>celular completa</div>
         </div>
       </div>
 
@@ -663,9 +679,9 @@
           <p>Células renovadas se traduzem em pele mais viva, cabelos mais fortes e uma vitalidade que aparece no olhar. Beleza real vem de dentro — vem da água que você é.</p>
         </div>
         <div class="beauty-card">
-          <div class="beauty-icon">💎</div>
-          <h4>Beleza de BASE</h4>
-          <p>Cosméticos tratam a superfície. A Água Oceânica trata a raiz. Quando a BASE celular é renovada, o reflexo externo muda de forma natural e duradoura.</p>
+          <div class="beauty-icon">⚡</div>
+          <h4>Energia Natural</h4>
+          <p>A energia do seu corpo é conduzida por sais existentes na composição do oceano. Isto aumenta a sua energia e sua vitalidade original.</p>
         </div>
       </div>
     </div>
